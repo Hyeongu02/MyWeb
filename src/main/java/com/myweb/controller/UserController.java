@@ -42,41 +42,73 @@ public class UserController extends HttpServlet {
 		
 		//공통으로 사용할 유저 서비스 객체
 		UserService service;
-
-		if(command.equals("/user/join.user")) { //회원가입 화면
-			request.getRequestDispatcher("join.jsp").forward(request, response);
-		} else if(command.equals("/user/joinForm.user")) { //회원가입 기능
-			service=new UserServiceImpl(); //아이디 관련 객체
-			service.join(request, response);
-		} else if(command.equals("/user/login.user")) { //로그인 화면
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-		} else if(command.equals("/user/loginForm.user")) {
-			service= new UserServiceImpl(); //아이디 관련 객체
-			service.login(request, response);
-		}else if(command.equals("/user/mypage.user")) { //회원페이지
-			request.getRequestDispatcher("mypage.jsp").forward(request, response);
-		}else if(command.equals("/user/modify.user")) { //회원페이지
-			service= new UserServiceImpl(); //아이디 관련 객체
-			service.getInfo(request, response);
 		
-		}else if(command.equals("/user/logout.user")) { //로그아웃
-			HttpSession session=request.getSession();
+		//기본 이동방식 forward
+		//MVC2 방식에서 리다이렉트는 다시 컨트롤러를 태울때 사용합니다.
+		
+		if(command.equals("/user/join.user")) { //회원가입 화면
+
+			request.getRequestDispatcher("join.jsp").forward(request, response);
+		
+		} else if(command.equals("/user/joinForm.user")) { //회원가입 기능
+			
+			//값......
+			service = new UserServiceImpl();
+			service.join(request, response);
+			
+		} else if(command.equals("/user/login.user")) { //로그인 화면
+			
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		
+		} else if(command.equals("/user/loginForm.user")) { //로그인 요청
+			
+			service = new UserServiceImpl();
+			service.login(request, response);
+			
+		} else if(command.equals("/user/mypage.user")) { //회원페이지
+			
+			request.getRequestDispatcher("mypage.jsp").forward(request, response);
+		
+		} else if(command.equals("/user/modify.user")) { //회원정보 수정페이지
+			
+			service = new UserServiceImpl();
+			service.getInfo(request, response);
+			
+		} else if(command.equals("/user/logout.user")) { //로그아웃
+			
+			HttpSession session = request.getSession();
 			session.invalidate();
 			
-			response.sendRedirect(request.getContextPath()+"/index.jsp");//메인화면으로
+			response.sendRedirect( request.getContextPath()  + "/index.jsp" ); //메인화면으로
 			
-		}else if(command.equals("/user/update.user")) {
-			service= new UserServiceImpl(); 
+		} else if(command.equals("/user/update.user")) { //회원정보 수정
+		
+			service = new UserServiceImpl();
 			service.update(request, response);
-		}else if(command.equals("/user/delete.user")) { //삭제화면
+		
+		} else if(command.equals("/user/delete.user")) { //삭제화면
 			
 			//mvc2는 기본 이동이 forward
 			request.getRequestDispatcher("delete.jsp").forward(request, response);
-		}else if(command.equals("/user/deleteForm.user")) { //탈퇴요청
 			
-			service= new UserServiceImpl(); 
+		} else if(command.equals("/user/deleteForm.user")) { //탈퇴요청
+			
+			service = new UserServiceImpl();
 			service.delete(request, response);
+			
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	}
 	

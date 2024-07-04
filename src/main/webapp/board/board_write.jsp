@@ -13,13 +13,13 @@
 			<tr>
 				<td>작성자</td>
 				<td>
-					<input type="text" name="writer" size="10" required>
+					<input type="text" name="writer" size="10" required >
 				</td>
 			</tr>
 			<tr>
 				<td>글 제목</td>
 				<td>
-					<input type="text" name="title" required>
+					<input type="text" name="title" required >
 				</td>
 			</tr>
 			<tr>
@@ -32,7 +32,7 @@
 				<td colspan="2">
 					<input type="submit" value="작성 완료" onclick="">
 					&nbsp;&nbsp;
-					<input type="button" value="목록">         
+					<input type="button" value="목록" onclick="location.href='list.board';" >         
 				</td>
 			</tr>
 			
